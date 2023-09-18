@@ -3,7 +3,7 @@ import type { GetStaticPaths } from "astro";
 import Layout from "../../layouts/Layout.astro"
 import { getLatestLaunches, getLaunchById } from "../../services/spacex"
 
-// export const prerender = true //server
+export const prerender = false //server
 
 const {id} = Astro.params
 
@@ -12,13 +12,6 @@ if (id) {
     launch = await getLaunchById({ id })
 }
 
-export async function getStaticPaths() {
-    const launches = await getLatestLaunches()
-
-    return launches.map((launch) => ({
-        params: { id: launch.id}
-    })) 
-}
 ---
 
 
